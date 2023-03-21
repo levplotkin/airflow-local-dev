@@ -1,0 +1,70 @@
+## list of tools
+Docker desktop https://github.com/rancher-sandbox/rancher-desktop/releases (Set container engine to docker)
+brew install kind
+brew install kubectx
+brew install derailed/k9s/k9s
+
+## CREATE KUBE CLUSTER
+```
+kind create cluster --name airflow-cluster --config kind-cluster.yaml
+```
+
+## CREATE AIRFLOW NAMESPACE
+```
+kubectl create namespace airflow
+```
+
+## CREATE WEBSERVER SECRET (FERNET KEY)
+```
+kubectl -n airflow create secret generic my-webserver-secret --from-literal="webserver-secret-key=$(python3 -c 'import secrets; print(secrets.token_hex(16))')"
+```
+
+## CREATE PERSISTENT VOLUME AND CLAIM FOR DAGS
+```
+kubectl apply -f dags_volume.yaml
+```
+
+## FETCH LATEST HELM CHART VERSION AND INSTALL AIRFLOW
+```
+helm repo add apache-airflow https://airflow.apache.org
+helm repo update
+helm search repo airflow
+helm install airflow apache-airflow/airflow --namespace airflow --debug -f values.yaml
+```
+
+## set port forwarding
+```
+kubectl port-forward svc/airflow-webserver 8080:8080 -n airflow 
+```
+
+## web ui
+http://0.0.0.0:8080/login/
+
+Login with admin/admin
+
+## troubleshooting
+if admin does not exist
+open ssh to airflow-webserver
+
+### get pod
+```
+kubectl exec -it $(kubectl get pod -n airflow | grep airflow-webserver) -n airflow -- bash
+
+```
+
+### add admin
+```
+airflow users create \
+          --username admin \
+          --firstname FIRST_NAME \
+          --lastname LAST_NAME \
+          --role Admin \
+          --email admin@example.org \
+          --password admin
+```
+
+## test
+copy test/dags_volume.yaml to dags/
+
+check the te dag in ui
+
