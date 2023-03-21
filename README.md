@@ -1,8 +1,10 @@
 ## list of tools
 Docker desktop https://github.com/rancher-sandbox/rancher-desktop/releases (Set container engine to docker)
+```
 brew install kind
 brew install kubectx
 brew install derailed/k9s/k9s
+```
 
 ## CREATE KUBE CLUSTER
 ```
