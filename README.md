@@ -70,3 +70,7 @@ copy test/dags_volume.yaml to dags/
 
 check the te dag in ui
 
+## clean up
+```
+kind delete clusters "airflow-cluster"
+```
