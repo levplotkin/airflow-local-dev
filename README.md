@@ -74,3 +74,14 @@ check the te dag in ui
 ```
 kind delete clusters "airflow-cluster"
 ```
+
+## used materials
+
+https://medium.com/go-city/deploying-apache-airflow-on-kubernetes-for-local-development-8e958675585d
+https://medium.com/everything-full-stack/airflow-on-k8s-for-local-development-5c3ad0ab8e7d
+
+https://www.youtube.com/watch?v=lKL7DMIfMyc
+https://www.youtube.com/watch?v=AjBADrVQJv0&t=306s
+
+https://github.com/marclamberti/webinar-airflow-chart
+https://github.com/gocityengineering/airflow-local-setup
