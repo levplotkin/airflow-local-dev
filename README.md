@@ -4,6 +4,12 @@ Docker desktop https://github.com/rancher-sandbox/rancher-desktop/releases (Set 
 brew install kind
 brew install kubectx
 brew install derailed/k9s/k9s
+brew install helm
+```
+
+## CLONE GITHUB REPO
+```
+git clone git@github.com:levplotkin/airflow-local-dev.git
 ```
 
 ## CREATE KUBE CLUSTER
